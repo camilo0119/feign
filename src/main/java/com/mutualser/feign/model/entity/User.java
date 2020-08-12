@@ -21,16 +21,20 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	
-	@NotBlank
-	String name;
-        
-        @NotBlank
-	String lastName;
-        
-        Integer age;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    @NotBlank
+    String name;
+
+    @NotBlank
+    String lastName;
+
+    String email;
+
+    String password;
+
+    Integer age;
+
 }

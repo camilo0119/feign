@@ -7,6 +7,7 @@ import com.mutualser.feign.repository.UserRepository;
 import com.mutualser.feign.services.impl.IUserService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +32,16 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User createUser(UserDto userDto) {
+    public UserDto createUser(UserDto userDto) {
         User user = iUserMapper.toEntity(userDto);
-        userRepository.save(user);
-        return user;
+        user = userRepository.save(user);
+        UserDto userDto1 = iUserMapper.toDto(user);
+        return userDto1;
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
     
 }
